@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../service/supabase.service';
 import { Supermarket } from '../data/supermarket';
+import { GeolocatorService } from '../service/geolocator.service';
 
 @Component({
   selector: 'app-tab3',
@@ -17,27 +18,18 @@ import { Supermarket } from '../data/supermarket';
 export class Tab3Page implements OnInit {
 
   supermarkets: Array<Supermarket> | null = []
-  //supermarkets: any[] = [];
-  /*
-  supermarkets = [
-    {
-      name: 'Supermarket 1',
-      info: 'Info for Supermarket 1.',
-    },
-    {
-      name: 'Supermarket 2',
-      info: 'Info for Supermarket 2.',
-    },
-    // Add more supermarkets as needed
-  ];
-  */
 
-  constructor(private supabaseService: SupabaseService) {}
+  latitude : number = 0
+  longitude : number = 0
+  altitude : number | null = 0
+
+  constructor(private supabaseService: SupabaseService,  public geolocationService : GeolocatorService) {}
 
   isLoading = true;
 
   ngOnInit() {
     this.loadData()
+    this.getCurrentPosition()
   }
 
   loadData () {
@@ -54,6 +46,20 @@ export class Tab3Page implements OnInit {
   async handleRefresh (event : any) {
     await this.loadData()
     event.target.complete()
+  }
+
+  getCurrentPosition = async () => {
+    const position = await this.geolocationService.getCurrentPosition()
+
+    this.latitude = position.coords.latitude
+    this.longitude = position.coords.longitude
+    this.altitude = position.coords.altitude
+  }
+
+  resetPosition () {
+    this.latitude = 0
+    this.longitude = 0
+    this.altitude = 0
   }
 
   /*
