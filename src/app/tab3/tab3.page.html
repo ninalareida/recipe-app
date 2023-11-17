@@ -6,6 +6,19 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <!-- Your supermarket list goes here -->
+  <ion-list>
+    <ion-item *ngFor="let supermarket of supermarkets">
+      <ion-label>
+        <h2>{{ supermarket.name }}</h2>
+        <p>{{ supermarket.info }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<!-- 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -15,3 +28,4 @@
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>
+-->
