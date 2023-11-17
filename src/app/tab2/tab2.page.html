@@ -6,6 +6,39 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <form (ngSubmit)="saveRecipe(recipeForm.value)" 
+        [formGroup]="recipeForm">
+
+    <ion-input
+      label="Title"
+      labelPlacement="floating"
+      errorText="Title is missing"
+      formControlName="title"
+      [required]="true"></ion-input>
+    <ion-input
+      label="Instructions"
+      labelPlacement="floating"
+      errorText="Instructions are missing"
+      formControlName="instructions"
+      [required]="true"></ion-input>
+    <ion-input
+      label="Image"
+      labelPlacement="floating"
+      errorText="Image is missing"
+      formControlName="image"
+      [required]="false"></ion-input>
+
+    <ion-button
+      type="submit"
+      fill="clear">Save
+    </ion-button>
+  </form>
+
+  
+</ion-content>
+
+<!-- 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -15,3 +48,4 @@
 
   <app-explore-container name="Tab 2 page"></app-explore-container>
 </ion-content>
+-->

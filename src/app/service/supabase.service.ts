@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
+import { Recipe } from '../data/recipe';
 
 export const SUPERMARKET_TABLE = 'supermarket'
 export const RECIPE_TABLE = 'recipe'
@@ -35,6 +36,21 @@ export class SupabaseService {
     console.log('Supabase Response:', { data, error });
     return data || [];
   }
+
+  async createRecipe(recipe : Recipe) {
+    const {data, error} = await this.supabase
+      .from(RECIPE_TABLE)
+      .insert({
+        title: recipe.title,
+        instructions: recipe.instructions,
+        image: recipe.image
+      })
+      .select('*')
+      .single();
+
+    return data
+  }
+
 
 
 
