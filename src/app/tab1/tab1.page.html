@@ -11,11 +11,11 @@
   <ion-list>
     <ion-item *ngFor="let recipe of recipes">
       <ion-thumbnail slot="start">
-        <ion-img [src]="recipe.imageUrl"></ion-img>
+        <ion-img [src]="recipe.image"></ion-img>
       </ion-thumbnail>
       <ion-label>
         <h2>{{ recipe.title }}</h2>
-        <p>{{ recipe.text }}</p>
+        <p>{{ recipe.instructions }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

@@ -3,6 +3,8 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonLabel } from '@ionic/an
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { Recipe } from '../data/recipe';
+import { SupabaseService } from '../service/supabase.service';
 
 @Component({
   selector: 'app-tab1',
@@ -14,7 +16,10 @@ import { CommonModule } from '@angular/common';
 })
 export class Tab1Page {
 
+  recipes: Array<Recipe> | null = []
+
   //rootPage = Tab1ContentPage;
+  /*
   recipes = [
     {
       title: 'Recipe 1',
@@ -28,7 +33,30 @@ export class Tab1Page {
     },
     // Add more recipes as needed
   ];
+  */
 
-  constructor() {}
+  constructor(private supabaseService: SupabaseService) {}
+
+  isLoading = true;
+
+  ngOnInit() {
+    this.loadData()
+  }
+
+  loadData () {
+    this.supabaseService.getRecipes()
+      .then(data => {
+        console.log('Fetched recipes in Tab1Page:', data);
+        this.recipes = data
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  async handleRefresh (event : any) {
+    await this.loadData()
+    event.target.complete()
+  }
 }
  
