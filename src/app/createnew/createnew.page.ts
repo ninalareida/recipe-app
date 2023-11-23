@@ -9,7 +9,6 @@ import { SupabaseService } from '../service/supabase.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { CameraComponent } from '../camera/camera.component';
-import { NotificationComponent } from '../notification/notification.component';
 import { NotificationService } from '../service/notification.service';
 
 @Component({
