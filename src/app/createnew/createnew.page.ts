@@ -20,60 +20,40 @@ import { CameraComponent } from '../camera/camera.component';
 })
 export class CreatenewPage {
 
-  // -- imageUrl : string | undefined
+  recipeForm: FormGroup;
+  imageUrl: string | undefined;
 
-  recipe : Recipe = new Recipe()
-
-  public recipeForm = new FormGroup({
-    id: new FormControl(0),
-    title: new FormControl('', Validators.required),
-    instructions: new FormControl('', Validators.required),
-    image: new FormControl('', Validators.required)
-  })
-
+  
   constructor(
     private supabaseService : SupabaseService,
     private formBuilder : FormBuilder,
     private router : Router,
     private route : ActivatedRoute,
-    //private camera: CameraComponent
-    ) {}
+    ) {
+      this.recipeForm = this.formBuilder.group({
+        title: ['', Validators.required],
+        instructions: ['', Validators.required],
+      });
+    }
 
-
-    /*
-  takePicture = async () => {
-
-  // const permissionStatus = await Camera.requestPermissions()
-
-  // console.log(permissionStatus)
-
-
-  const image = await Camera.getPhoto({
-    resultType: CameraResultType.Uri,
-    source: CameraSource.Camera,
-    quality: 100
-  });
-
-  this.imageUrl = image.webPath;
-
-  };
-
-  resetPicture () {
-    this.imageUrl = ''
-  }
-*/
   
   async back () {
     await this.router.navigate(['tabs','recipe'])
   }
 
-  saveRecipe(formData : any) {
-    this.recipe = Object.assign(formData)
+  saveRecipe() {
+    const formData = this.recipeForm.value;
+    formData.image = this.imageUrl; // Add the image URL to the form data
 
-    this.supabaseService.createRecipe(this.recipe)
-          .then(payload=>{
-            this.back()
-          })
+    this.supabaseService.createRecipe(formData)
+      .then(payload => {
+        this.back();
+      });
   }
 
+  handleImageChange(imageUrl: string) {
+    this.imageUrl = imageUrl;
+  }
+
+  
 }
