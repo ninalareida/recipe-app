@@ -7,6 +7,8 @@ import { LocalNotifications } from '@capacitor/local-notifications';
 })
 export class NotificationService {
 
+  private notificationIdCounter = 1;
+
   constructor() { }
 
   async requestLocalNotificationPermission(): Promise<boolean> {
@@ -20,10 +22,11 @@ export class NotificationService {
   }
 
   sendLocalNotification(title: string, body: string): void {
+    console.log('Sending notification...');
     const notification = {
       title: title,
       body: body,
-      id: 1, // Provide a unique ID for the notification
+      id: this.notificationIdCounter++, // Use a counter for a unique ID
       smallIcon: 'ic_stat_icon_config_sample', // Use the icon specified in your capacitor.config.ts
       iconColor: '#488AFF',
       sound: 'beep.wav',
@@ -31,6 +34,10 @@ export class NotificationService {
 
     LocalNotifications.schedule({
       notifications: [notification],
+    }).then(() => {
+      console.log('Notification sent successfully');
+    }).catch((error) => {
+      console.error('Error sending notification:', error);
     });
   }
 }
