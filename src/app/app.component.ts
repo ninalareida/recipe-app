@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    defineCustomElements(window);
+  }
 }

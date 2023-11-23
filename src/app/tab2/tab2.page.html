@@ -22,13 +22,36 @@
       errorText="Instructions are missing"
       formControlName="instructions"
       [required]="true"></ion-input>
+
+      <app-camera></app-camera>
+
+      <!-- 
+
+      <ion-card>
+
+        <img *ngIf="imageUrl" [src]="imageUrl" />
+      
+        <ion-button fill="clear"
+          (click)="takePicture()">
+          Foto aufnehmen
+        </ion-button>
+      
+        <ion-button fill="clear"
+          *ngIf="imageUrl"
+          (click)="resetPicture()">
+          Reset
+        </ion-button>
+      
+      </ion-card>
+-->
+      <!-- 
     <ion-input
       label="Image"
       labelPlacement="floating"
       errorText="Image is missing"
       formControlName="image"
       [required]="false"></ion-input>
-
+-->
     <ion-button
       type="submit"
       fill="clear">Save
