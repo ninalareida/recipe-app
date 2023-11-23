@@ -11,14 +11,14 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { CameraComponent } from '../camera/camera.component';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss'],
+  selector: 'app-createnew',
+  templateUrl: 'createnew.page.html',
+  styleUrls: ['createnew.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, ReactiveFormsModule, CameraComponent // IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent
 ]
 })
-export class Tab2Page {
+export class CreatenewPage {
 
   // -- imageUrl : string | undefined
 
@@ -64,7 +64,7 @@ export class Tab2Page {
 */
   
   async back () {
-    await this.router.navigate(['tabs','tab1'])
+    await this.router.navigate(['tabs','recipe'])
   }
 
   saveRecipe(formData : any) {

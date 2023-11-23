@@ -8,14 +8,14 @@ import { Supermarket } from '../data/supermarket';
 import { GeolocatorService } from '../service/geolocator.service';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
+  selector: 'app-restaurant',
+  templateUrl: 'restaurant.page.html',
+  styleUrls: ['restaurant.page.scss'],
   standalone: true,
   imports: [ExploreContainerComponent, IonicModule, CommonModule // IonHeader, IonToolbar, IonTitle, IonContent, 
   ],
 })
-export class Tab3Page implements OnInit {
+export class RestaurantPage implements OnInit {
 
   supermarkets: Array<Supermarket> | null = []
 
@@ -35,7 +35,7 @@ export class Tab3Page implements OnInit {
   loadData () {
     this.supabaseService.getSupermarkets()
       .then(data => {
-        console.log('Fetched supermarkets in Tab3Page:', data);
+        console.log('Fetched supermarkets in RestaurantPage:', data);
         this.supermarkets = data
       })
       .finally(() => {
@@ -65,7 +65,7 @@ export class Tab3Page implements OnInit {
   /*
   async fetchSupermarkets() {
     const fetchedSupermarkets = await this.supabaseService.getSupermarkets();
-    console.log('Fetched supermarkets in Tab1Page:', fetchedSupermarkets);
+    console.log('Fetched supermarkets in RecipePage:', fetchedSupermarkets);
     this.supermarkets = fetchedSupermarkets || []; // Handle null by assigning an empty array
   }
   */

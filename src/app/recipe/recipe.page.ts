@@ -7,18 +7,18 @@ import { Recipe } from '../data/recipe';
 import { SupabaseService } from '../service/supabase.service';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: 'app-recipe',
+  templateUrl: 'recipe.page.html',
+  styleUrls: ['recipe.page.scss'],
   standalone: true,
   imports: [ExploreContainerComponent, IonicModule, CommonModule //IonHeader, IonToolbar, IonTitle, IonContent, 
 ],
 })
-export class Tab1Page {
+export class RecipePage {
 
   recipes: Array<Recipe> | null = []
 
-  //rootPage = Tab1ContentPage;
+  //rootPage = RecipeContentPage;
   /*
   recipes = [
     {
@@ -46,7 +46,7 @@ export class Tab1Page {
   loadData () {
     this.supabaseService.getRecipes()
       .then(data => {
-        console.log('Fetched recipes in Tab1Page:', data);
+        console.log('Fetched recipes in RecipePage:', data);
         this.recipes = data
       })
       .finally(() => {
