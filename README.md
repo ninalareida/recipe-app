@@ -15,6 +15,7 @@ You can use this command:
 ## Serve the App
 You can use this command:
 > ionic serve
+
 This command starts a local development server, and you can view your Ionic app by opening a browser and navigating to http://localhost:8100.
 
 ## Database
