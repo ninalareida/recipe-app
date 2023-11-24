@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { CameraComponent } from '../camera/camera.component';
 import { NotificationService } from '../service/notification.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-createnew',
@@ -31,6 +32,7 @@ export class CreatenewPage {
     private router : Router,
     private route : ActivatedRoute,
     private notificationService: NotificationService,
+    private toastController: ToastController
     ) {
       this.recipeForm = this.formBuilder.group({
         title: ['', Validators.required],
@@ -53,7 +55,7 @@ export class CreatenewPage {
           this.notificationService.sendLocalNotification('New Recipe Created', 'Check out the latest recipe!');
         }
       });
-
+      this.presentCreateToast();
       this.back();
     });
     /*
@@ -72,5 +74,13 @@ export class CreatenewPage {
     this.imageUrl = imageUrl;
   }
 
-  
+  async presentCreateToast() {
+    const toast = await this.toastController.create({
+      message: 'Recipe created successfully!',
+      duration: 2000,
+      position: 'bottom',
+    });
+    toast.present();
+  }
+
 }

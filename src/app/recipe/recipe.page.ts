@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { Recipe } from '../data/recipe';
 import { SupabaseService } from '../service/supabase.service';
 import { EditRecipePage } from '../edit-recipe/edit-recipe.page';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-recipe',
@@ -20,7 +22,8 @@ export class RecipePage {
   recipes: Array<Recipe> | null = []
 
   constructor(private supabaseService: SupabaseService, 
-    private navController: NavController, private modalController: ModalController) {}
+    private navController: NavController, private modalController: ModalController,
+    private toastController: ToastController) {}
 
   isLoading = true;
 
@@ -49,15 +52,11 @@ export class RecipePage {
       .then(() => {
         // If deletion is successful, remove the recipe from the local array
         this.recipes = this.recipes!.filter(recipe => recipe.id !== recipeId);
+        this.presentDeleteToast(); // Display success toast
       })
       .catch(error => {
         console.error('Error deleting recipe:', error);
       });
-  }
-
-  editRecipe1(recipe: Recipe) {
-    // Navigate to the edit page and pass the recipe object
-    this.navController.navigateForward(['/edit-recipe', { recipe: JSON.stringify(recipe) }]);
   }
 
   async editRecipe(recipe: Recipe) {
@@ -75,11 +74,30 @@ export class RecipePage {
         const index = this.recipes!.findIndex((r) => r.id === editedRecipe.id);
         if (index !== -1) {
           this.recipes![index] = editedRecipe;
+          this.presentEditToast(); // Display success toast
         }
       }
     });
 
     return await modal.present();
+  }
+
+  async presentDeleteToast() {
+    const toast = await this.toastController.create({
+      message: 'Recipe deleted successfully!',
+      duration: 2000, // Display duration in milliseconds
+      position: 'bottom', // You can change the position as per your preference
+    });
+    toast.present();
+  }
+
+  async presentEditToast() {
+    const toast = await this.toastController.create({
+      message: 'Recipe edited successfully!',
+      duration: 2000,
+      position: 'bottom',
+    });
+    toast.present();
   }
   
 }
