@@ -18,29 +18,12 @@
         <h2>{{ recipe.title }}</h2>
         <p>{{ recipe.instructions }}</p>
       </ion-label>
+       <!-- Edit button -->
+       <ion-button (click)="editRecipe(recipe)">Edit</ion-button>
+
+       <!-- Delete button -->
+      <ion-button (click)="deleteRecipe(recipe.id)">Delete</ion-button>
+
     </ion-item>
   </ion-list>
 </ion-content>
-
-
-<!-- 
-<ion-content [fullscreen]="true">
-  <!- 
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      
-      <ion-title size="large">Recipe</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  ->
-  <ion-item>
-    <ion-title>Pasta</ion-title><br>
-    <ion-text>
-      <p>fdash</p>
-      <p>dkjln</p>
-    </ion-text>
-  </ion-item>
-  
-  <app-explore-container name="Recipe page"></app-explore-container>
-</ion-content>
--->

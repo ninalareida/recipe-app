@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient, PostgrestResponse, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
 import { Recipe } from '../data/recipe';
 import { Supermarket } from '../data/supermarket';
@@ -101,8 +101,43 @@ export class SupabaseService {
     return data
   }
 
+  async deleteRecipe(recipeId: number): Promise<void> {
+    try {
+      const { data, error } = await this.supabase
+        .from(RECIPE_TABLE)
+        .delete()
+        .eq('id', recipeId);
+      if (error) {
+        throw error;
+      }
+      console.log('Recipe deleted successfully:', data);
+    } catch (error) {
+      console.error('Error deleting recipe:', error);
+      throw error; 
+    }
+  }
 
-
+  async updateRecipe(recipe: Recipe): Promise<void> {
+    try {
+      const { data, error } = await this.supabase
+        .from(RECIPE_TABLE)
+        .update({
+          title: recipe.title,
+          instructions: recipe.instructions,
+          image: recipe.image,
+        })
+        .eq('id', recipe.id); 
+  
+      if (error) {
+        throw error;
+      }
+  
+      console.log('Recipe updated successfully:', data);
+    } catch (error) {
+      console.error('Error updating recipe:', error);
+      throw error;
+    }
+  }
 
   /*
    async getSupermarkets() {
