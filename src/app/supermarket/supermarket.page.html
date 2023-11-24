@@ -9,6 +9,20 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
+    <ion-item>
+      <ion-label>Latitude</ion-label>
+      {{ latitude }}
+    </ion-item>
+    <ion-item>
+      <ion-label>Longitude</ion-label>
+      {{ longitude }}
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="getCurrentPosition()" class="custom-button">Get your location</ion-button>
+
+
+  <ion-list>
     <ion-item *ngFor="let supermarket of supermarkets">
       <ion-label>
         <h2>{{ supermarket.name }}</h2>
