@@ -18,8 +18,8 @@
       <ion-textarea [(ngModel)]="recipe && recipe.instructions" name="instructions" required></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Image URL</ion-label>
-      <ion-input [ngModel]="recipe && recipe.image" (ngModelChange)="recipe && (recipe.image = $event)" name="image" required></ion-input>
+      <ion-label position="stacked">Image</ion-label>
+      <app-camera (imageChanged)="updateImage($event)"></app-camera>
     </ion-item>
   </ion-list>
 
