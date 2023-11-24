@@ -3,13 +3,13 @@
   <img *ngIf="imageUrl" [src]="imageUrl" />
 
   <ion-button fill="clear"
-    (click)="takePicture()">
+    (click)="takePicture()" class="custom-button">
     Picture
   </ion-button>
 
   <ion-button fill="clear"
     *ngIf="imageUrl"
-    (click)="resetPicture()">
+    (click)="resetPicture()" class="custom-button">
     Reset
   </ion-button>
 

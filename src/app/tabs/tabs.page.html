@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+    <ion-title class="title-color">
+      <ion-icon name="restaurant"></ion-icon>
       Recipe App
     </ion-title>
   </ion-toolbar>
@@ -21,17 +22,17 @@
   </ion-tab>
   -->
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="recipe" href="/tabs/trecipe">
+    <ion-tab-button tab="recipe" href="/tabs/trecipe" class="custom-color">
       <ion-icon aria-hidden="true" name="receipt"></ion-icon>
       <ion-label>Recipes</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="createnew" href="/tabs/createnew">
+    <ion-tab-button tab="createnew" href="/tabs/createnew" class="custom-color">
       <ion-icon aria-hidden="true" name="create"></ion-icon>
       <ion-label>Create New Recipe</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="supermarket" href="/tabs/supermarket">
+    <ion-tab-button tab="supermarket" href="/tabs/supermarket" class="custom-color">
       <ion-icon aria-hidden="true" name="basket"></ion-icon>
       <ion-label>Supermarkets</ion-label>
     </ion-tab-button>
